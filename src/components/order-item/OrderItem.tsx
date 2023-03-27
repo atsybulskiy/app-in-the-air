@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import {format, parseISO} from 'date-fns';
 
 import styles from './order-item.module.scss';
-import hotel from '../../images/hotel.svg';
+import hotel from '../../assets/images/hotel.svg';
 
 import {paths} from '../../routes/routes';
 import {Order, OrderTypes} from '../../models/IOrder';

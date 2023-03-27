@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import logo from '../../images/logo.svg';
+import logo from '../../assets/images/logo.svg';
 import {paths} from '../../routes/routes';
 import {CultureSelector} from '../culture-selector/CultureSelector';
 

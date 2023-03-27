@@ -2,8 +2,8 @@ import {useParams} from 'react-router-dom';
 import {format, parseISO} from 'date-fns';
 
 import styles from './reservation.module.scss';
-import map from '../../images/map.jpg';
-import {ReactComponent as NextIcon} from '../../images/ic_next_24.svg';
+import map from '../../assets/images/map.jpg';
+import {ReactComponent as NextIcon} from '../../assets/images/ic_next_24.svg';
 
 import {useOrder} from '../../hooks/useOrder';
 import {Order, OrderTypes} from '../../models/IOrder';

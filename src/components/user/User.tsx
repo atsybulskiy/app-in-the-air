@@ -1,5 +1,5 @@
 import styles from './user.module.scss';
-import image from '../../images/user-pic.png';
+import image from '../../assets/images/user-pic.png';
 
 export const User = () => {
   return <div className={styles.container}>
