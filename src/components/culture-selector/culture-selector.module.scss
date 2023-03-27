@@ -1,0 +1,24 @@
+@import 'src/styles/variables';
+
+.container {
+  display: flex;
+  border: 1px solid $border-color;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+
+  & > div {
+    padding: 5px 12px;
+    cursor: pointer;
+    border-left: 1px solid $border-color;
+
+    &:hover {
+      background: #efefef;
+    }
+
+    &:first-child {
+      border: none;
+    }
+  }
+}

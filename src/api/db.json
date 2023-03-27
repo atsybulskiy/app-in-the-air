@@ -1,0 +1,131 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "title": "",
+      "type": "flight",
+      "flight_company": "American Airlines",
+      "flight_company_logo": "http://localhost:3000/logos/finn-air.svg",
+      "outbound_flight_number": "AA123",
+      "outbound_origin": "New York",
+      "outbound_destination": "Los Angeles",
+      "outbound_departure_date": "2023-04-01T10:30:00",
+      "outbound_arrival_date": "2023-04-01T14:30:00",
+      "passengers": [
+        "John Doe",
+        "Jane Doe"
+      ],
+      "return_flight_number": "AA456",
+      "return_origin": "Los Angeles",
+      "return_destination": "New York",
+      "return_departure_date": "2023-04-08T16:45:00",
+      "return_arrival_date": "2023-04-08T20:45:00",
+      "booking_reference": "L5W272",
+      "total_price": 1600
+    },
+    {
+      "id": 2,
+      "title": "",
+      "type": "hotel",
+      "hotel_name": "Crowne Plaza HY36 Midtown Manhattan, an IHG Hotel",
+      "address": "123 Main Street, Miami, FL",
+      "city": "Miami",
+      "check_in_date": "2023-05-07T14:00:00",
+      "check_out_date": "2023-05-17T12:00:00",
+      "room_type": "double",
+      "room_description": "1 Room: Classic King Mobility and Hearing Accessible Guest Room with Tub",
+      "guests": [
+        "Alice Smith",
+        "Bob Smith"
+      ],
+      "cancellation_policy": "Free cancellation up to 24 hours before check-in",
+      "confirmation_number": "H123456",
+      "total_price": 1200
+    },
+    {
+      "id": 3,
+      "title": "",
+      "type": "flight",
+      "flight_company": "United Airlines",
+      "flight_company_logo": "http://localhost:3000/logos/air-arabia.svg",
+      "outbound_flight_number": "UA123",
+      "outbound_origin": "Los Angeles",
+      "outbound_destination": "New York",
+      "outbound_departure_date": "2023-06-01T09:15:00",
+      "outbound_arrival_date": "2023-04-01T14:30:00",
+      "passengers": [
+        "Mike Johnson",
+        "Sarah Johnson"
+      ],
+      "return_flight_number": "UA456",
+      "return_origin": "New York",
+      "return_destination": "Los Angeles",
+      "return_departure_date": "2023-06-08T13:30:00",
+      "return_arrival_date": "2023-04-08T20:45:00",
+      "booking_reference": "UA789012",
+      "total_price": 2000
+    },
+    {
+      "id": 4,
+      "title": "",
+      "type": "hotel",
+      "hotel_name": "Marriott",
+      "address": "456 Broadway, New York, NY",
+      "city": "New York",
+      "check_in_date": "2023-07-01T14:00:00",
+      "check_out_date": "2023-07-05T12:00:00",
+      "room_type": "suite",
+      "room_description": "Luxury suite with king size bed and city view",
+      "guests": [
+        "Emily Brown",
+        "Tom Brown"
+      ],
+      "cancellation_policy": "Free cancellation up to 48 hours before check-in",
+      "confirmation_number": "M123456",
+      "total_price": 3000
+    },
+    {
+      "id": 5,
+      "title": "",
+      "type": "flight",
+      "flight_company": "Delta Airlines",
+      "flight_company_logo": "http://localhost:3000/logos/spirit.svg",
+      "outbound_flight_number": "DL123",
+      "outbound_origin": "San Francisco",
+      "outbound_destination": "Chicago",
+      "outbound_departure_date": "2023-08-01T11:00:00",
+      "outbound_arrival_date": "2023-04-01T14:30:00",
+      "passengers": [
+        "Peter Lee",
+        "Lisa Lee"
+      ],
+      "return_flight_number": "DL456",
+      "return_origin": "Chicago",
+      "return_destination": "San Francisco",
+      "return_departure_date": "2023-08-08T17:30:00",
+      "return_arrival_date": "2023-04-08T20:45:00",
+      "booking_reference": "DL789012",
+      "total_price": 1800
+    },
+    {
+      "id": 6,
+      "title": "",
+      "type": "hotel",
+      "hotel_name": "Sheraton",
+      "address": "789 Park Avenue, Chicago, IL",
+      "city": "Chicago",
+      "check_in_date": "2023-01-01T14:00:00",
+      "check_out_date": "2023-01-05T12:00:00",
+      "room_type": "standard",
+      "room_description": "Standard room with queen size bed and city view",
+      "guests": [
+        "David Kim",
+        "Grace Kim"
+      ],
+      "cancellation_policy": "Free cancellation up to 72 hours before check-in",
+      "confirmation_number": "S123456",
+      "total_price": 1500
+    }
+  ]
+}
+

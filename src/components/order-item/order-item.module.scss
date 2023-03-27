@@ -1,0 +1,46 @@
+@import 'src/styles/variables';
+
+.container {
+  display: flex;
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 32px;
+  gap: 32px;
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  line-height: 18px;
+  color: $contentSecondary;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.link {
+  font-size: 13px;
+  line-height: 16px;
+  color: $contentAccent;
+  text-decoration: none;
+}

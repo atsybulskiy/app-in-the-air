@@ -1,0 +1,25 @@
+@import 'src/styles/variables';
+
+.message {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.5px;
+  color: $grey-300;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.email {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  color: $contentSecondary;
+  margin-bottom: 1.5rem;
+}

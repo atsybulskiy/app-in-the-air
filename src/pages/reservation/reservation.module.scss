@@ -1,0 +1,60 @@
+@import 'src/styles/variables';
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  color: $contentSecondary;
+}
+
+.number {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.date {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 4px;
+}
+
+.time {
+  font-size: 13px;
+  line-height: 16px;
+  color: $contentSecondary;
+}
+
+.amount {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.5px;
+}
+
+.map {
+  position: fixed;
+  left: 50vw;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
