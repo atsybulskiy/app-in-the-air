@@ -2,17 +2,17 @@ import {useParams} from 'react-router-dom';
 import {format, parseISO} from 'date-fns';
 
 import styles from './reservation.module.scss';
-import map from '../../assets/images/map.jpg';
+import map from '../../assets/images/map.png';
 import {ReactComponent as NextIcon} from '../../assets/images/ic_next_24.svg';
 
 import {useOrder} from '../../hooks/useOrder';
-import {Order, OrderTypes} from '../../models/IOrder';
+import {CommonOrder, OrderTypes} from '../../models/IOrder';
 import {PageHeader} from '../../components/common/page-header/PageHeader';
 import {People} from '../../components/common/people/People';
 
 export const Reservation = () => {
   const {id} = useParams<{ id: string }>();
-  const {order: reservation, isLoading} = useOrder<Order<OrderTypes.Hotel>>(id);
+  const {order: reservation, isLoading} = useOrder<CommonOrder<OrderTypes.Hotel>>(id);
 
   if (isLoading) {
     return <div className={'text-center'}>Loading...</div>;
@@ -21,7 +21,7 @@ export const Reservation = () => {
   return <div className={'container'}>
     <div className={'row'}>
       <div className={'col-6'}>
-        <PageHeader message={'Reservation is confirmed!'}/>
+        <PageHeader message={'Reservation is confirmed!'} email={'testamike@gmail.com'}/>
         <div className={styles.info}>
         <div className="row">
           <div className="col">

@@ -2,24 +2,50 @@
   "orders": [
     {
       "id": 1,
-      "title": "",
+      "title": "New York (JFK) - Los Angeles (LAX)",
       "type": "flight",
-      "flight_company": "American Airlines",
-      "flight_company_logo": "http://localhost:3000/logos/finn-air.svg",
-      "outbound_flight_number": "AA123",
-      "outbound_origin": "New York",
-      "outbound_destination": "Los Angeles",
-      "outbound_departure_date": "2023-04-01T10:30:00",
-      "outbound_arrival_date": "2023-04-01T14:30:00",
+      "outbound": {
+        "flight_number": "AA123",
+        "company" :{
+          "name": "American Airlines",
+          "logo": "http://localhost:3000/logos/finn-air.svg"
+        },
+        "origin": {
+          "city": "New York",
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "destination": {
+          "city": "Los Angeles",
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure_date": "2023-04-01T10:30:00",
+        "arrival_date": "2023-04-01T14:30:00"
+      },
       "passengers": [
         "John Doe",
         "Jane Doe"
       ],
-      "return_flight_number": "AA456",
-      "return_origin": "Los Angeles",
-      "return_destination": "New York",
-      "return_departure_date": "2023-04-08T16:45:00",
-      "return_arrival_date": "2023-04-08T20:45:00",
+      "return": {
+        "flight_number": "AA456",
+        "company" :{
+          "name": "American Airlines",
+          "logo": "http://localhost:3000/logos/finn-air.svg"
+        },
+        "origin": {
+          "city": "Los Angeles",
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "destination": {
+          "city": "New York",
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "departure_date": "2023-04-08T16:45:00",
+        "arrival_date": "2023-04-08T20:45:00"
+      },
       "booking_reference": "L5W272",
       "total_price": 1600
     },
@@ -46,22 +72,48 @@
       "id": 3,
       "title": "",
       "type": "flight",
-      "flight_company": "United Airlines",
-      "flight_company_logo": "http://localhost:3000/logos/air-arabia.svg",
-      "outbound_flight_number": "UA123",
-      "outbound_origin": "Los Angeles",
-      "outbound_destination": "New York",
-      "outbound_departure_date": "2023-06-01T09:15:00",
-      "outbound_arrival_date": "2023-04-01T14:30:00",
+      "outbound": {
+        "flight_number": "UA123",
+        "company": {
+          "name": "United Airlines",
+          "logo": "http://localhost:3000/logos/air-arabia.svg"
+        },
+        "origin": {
+          "city": "Los Angeles",
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "destination": {
+          "city": "New York",
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "departure_date": "2023-06-01T09:15:00",
+        "arrival_date": "2023-04-01T14:30:00"
+      },
       "passengers": [
         "Mike Johnson",
         "Sarah Johnson"
       ],
-      "return_flight_number": "UA456",
-      "return_origin": "New York",
-      "return_destination": "Los Angeles",
-      "return_departure_date": "2023-06-08T13:30:00",
-      "return_arrival_date": "2023-04-08T20:45:00",
+      "return": {
+        "flight_number": "UA456",
+        "company": {
+          "name": "United Airlines",
+          "logo": "http://localhost:3000/logos/air-arabia.svg"
+        },
+        "origin": {
+          "return_origin": "New York",
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "destination": {
+          "city": "Los Angeles",
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure_date": "2023-06-08T13:30:00",
+        "arrival_date": "2023-04-08T20:45:00"
+      },
       "booking_reference": "UA789012",
       "total_price": 2000
     },
@@ -88,22 +140,48 @@
       "id": 5,
       "title": "",
       "type": "flight",
-      "flight_company": "Delta Airlines",
-      "flight_company_logo": "http://localhost:3000/logos/spirit.svg",
-      "outbound_flight_number": "DL123",
-      "outbound_origin": "San Francisco",
-      "outbound_destination": "Chicago",
-      "outbound_departure_date": "2023-08-01T11:00:00",
-      "outbound_arrival_date": "2023-04-01T14:30:00",
+      "outbound": {
+        "flight_number": "DL123",
+        "company": {
+          "name": "Delta Airlines",
+          "logo": "http://localhost:3000/logos/spirit.svg"
+        },
+        "origin": {
+          "city": "San Francisco",
+          "name": "San Francisco International Airport",
+          "code": "SFO"
+        },
+        "destination": {
+          "city": "Chicago",
+          "name": "Chicago O'Hare International Airport",
+          "code": "ORD"
+        },
+        "departure_date": "2023-08-01T11:00:00",
+        "arrival_date": "2023-08-01T14:30:00"
+      },
       "passengers": [
         "Peter Lee",
         "Lisa Lee"
       ],
-      "return_flight_number": "DL456",
-      "return_origin": "Chicago",
-      "return_destination": "San Francisco",
-      "return_departure_date": "2023-08-08T17:30:00",
-      "return_arrival_date": "2023-04-08T20:45:00",
+      "return": {
+        "flight_number": "DL456",
+        "company": {
+          "name": "Delta Airlines",
+          "logo": "http://localhost:3000/logos/spirit.svg"
+        },
+        "origin": {
+          "return_origin": "Chicago",
+          "name": "Chicago O'Hare International Airport",
+          "code": "ORD"
+        },
+        "destination": {
+          "city": "San Francisco",
+          "name": "San Francisco International Airport",
+          "code": "SFO"
+        },
+        "departure_date": "2023-08-08T17:30:00",
+        "arrival_date": "2023-08-08T20:45:00"
+      },
       "booking_reference": "DL789012",
       "total_price": 1800
     },
@@ -128,4 +206,3 @@
     }
   ]
 }
-

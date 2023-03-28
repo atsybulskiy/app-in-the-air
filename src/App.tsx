@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Routes, useMatch} from 'react-router-dom';
 
-import {Header} from './components/header/Header';
 import {MainRoutes, paths} from './routes/routes';
+import {Header} from './components/common/header/Header';
 
 const App = () => {
   const mainPath = useMatch(paths.main);

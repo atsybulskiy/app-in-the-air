@@ -1,11 +1,11 @@
 import {AxiosResponse} from 'axios';
 
 import $api from '../api';
-import {Order} from '../models/IOrder';
+import {CommonOrder} from '../models/IOrder';
 
 export default class OrderService {
-  static fetchOrders(): Promise<AxiosResponse<Order[]>> {
-    return $api.get<Order[]>('/orders');
+  static fetchOrders(): Promise<AxiosResponse<CommonOrder[]>> {
+    return $api.get<CommonOrder[]>('/orders');
   }
 
   static fetchOrder<T>(id: string): Promise<AxiosResponse<T>> {

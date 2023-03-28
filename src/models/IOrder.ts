@@ -1,8 +1,8 @@
-import {IFlight} from './IFlight';
+import {ITrip} from './ITrip';
 import {IHotel} from './IHotel';
 
 export type OrderType = (
-  | IFlight
+  | ITrip
   | IHotel
   ) & {
   id: string;
@@ -17,4 +17,4 @@ export enum OrderTypes {
 
 export type ExtractParameters<A, T> = A extends { type: T } ? A : never;
 
-export type Order<T = OrderTypes> = ExtractParameters<OrderType, T>;
+export type CommonOrder<T = OrderTypes> = ExtractParameters<OrderType, T>;

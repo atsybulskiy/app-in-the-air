@@ -1,12 +1,13 @@
-import {useMemo, useState} from 'react';
-import {compareAsc, parseISO} from 'date-fns';
+import {MouseEvent, useMemo, useState} from 'react';
 
+import classNames from 'classnames';
 import styles from './orders.module.scss';
 
+import {compareOrderDates} from '../../helpers';
 import {useOrders} from '../../hooks/useOrders';
 import {OrderTypes} from '../../models/IOrder';
-import {Search} from '../../components/search/Search';
-import {OrderItem} from '../../components/order-item/OrderItem';
+import {Search} from '../../components/common/search/Search';
+import {Order} from '../../components/order/Order';
 
 export const Orders = () => {
   const {orders, isLoading} = useOrders();
@@ -14,15 +15,10 @@ export const Orders = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const filteredOrders = useMemo(() => {
-    return filter === 'upcoming'
-      ? orders.filter(order => {
-        return compareAsc(order.type === OrderTypes.Flight
-            ? parseISO(order.outbound_departure_date)
-            : parseISO(order.check_in_date),
-          new Date()
-        ) >= 0;
-      })
-      : orders.filter(order => compareAsc(order.type === OrderTypes.Flight ? parseISO(order.outbound_departure_date) : parseISO(order.check_in_date), new Date()) < 0);
+    return orders.filter(order => {
+      const isUpcoming = compareOrderDates(order);
+      return filter === 'upcoming' ? isUpcoming : !isUpcoming;
+    });
   }, [filter, orders]);
 
   const ordersSearched = useMemo(() => {
@@ -32,19 +28,28 @@ export const Orders = () => {
     });
   }, [filteredOrders, searchValue]);
 
-  return <div className={'container'}>
-    <div className={'d-flex align-items-center mb-3'}>
+  const onChangeFilter = (e: MouseEvent<HTMLElement>) => {
+    const id = e.currentTarget.id;
+    setFilter(id);
+  };
+
+  return <div className="container">
+    <div className="d-flex align-items-center mb-3">
       <div className={styles.title}>Orders</div>
       <Search value={searchValue} onChange={setSearchValue}/>
     </div>
     <div className={styles.filters}>
-      <div className={filter === 'upcoming' ? styles.active : ''} onClick={() => setFilter('upcoming')}>Upcoming</div>
-      <div className={filter === 'past' ? styles.active : ''} onClick={() => setFilter('past')}>Past</div>
+      <div className={classNames({[styles.active]: filter === 'upcoming'})} id={'upcoming'}
+           onClick={onChangeFilter}>Upcoming
+      </div>
+      <div className={classNames({[styles.active]: filter === 'past'})} id={'past'}
+           onClick={onChangeFilter}>Past
+      </div>
     </div>
     {isLoading
       ? <div>Loading...</div>
       : <div className={styles.orders}>
-        {ordersSearched.map(order => <OrderItem key={order.id} order={order}/>)}
+        {ordersSearched.map(order => <Order key={order.id} order={order}/>)}
       </div>}
   </div>;
 };

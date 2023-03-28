@@ -1,9 +1,9 @@
 import {useCallback, useEffect, useState} from 'react';
-import {Order} from '../models/IOrder';
+import {CommonOrder} from '../models/IOrder';
 import OrderService from '../services/OrderService';
 
 export const useOrders = () => {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<CommonOrder[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const getOrders = useCallback(async () => {

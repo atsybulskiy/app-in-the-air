@@ -1,29 +1,29 @@
 import {Link} from 'react-router-dom';
 import {format, parseISO} from 'date-fns';
 
-import styles from './order-item.module.scss';
+import styles from './order.module.scss';
 import hotel from '../../assets/images/hotel.svg';
 
 import {paths} from '../../routes/routes';
-import {Order, OrderTypes} from '../../models/IOrder';
+import {CommonOrder, OrderTypes} from '../../models/IOrder';
 
 interface IProps {
-  order: Order;
+  order: CommonOrder;
 }
 
-export const OrderItem = ({order}: IProps) => {
+export const Order = ({order}: IProps) => {
   const isFlight = order.type === OrderTypes.Flight;
 
   return <div className={styles.container}>
     <div className={styles.logo}>
-      <img src={isFlight ? order.flight_company_logo : hotel} alt={''}/>
+      <img src={isFlight ? order.outbound.company.logo : hotel} alt={''}/>
     </div>
     <div className={styles.info}>
       <div
-        className={styles.title}>{isFlight ? `${order.outbound_origin} - ${order.outbound_destination}` : order.hotel_name}</div>
+        className={styles.title}>{isFlight ? `${order.outbound.origin.city} - ${order.outbound.destination.city}` : order.hotel_name}</div>
       <div className={styles.meta}>
         {isFlight
-          ? <div>{format(parseISO(order.outbound_departure_date), 'dd')} - {format(parseISO(order.return_arrival_date), 'dd MMM')}</div>
+          ? <div>{format(parseISO(order.outbound.departure_date), 'dd')} - {format(parseISO(order.return.arrival_date), 'dd MMM')}</div>
           : <div>{format(parseISO(order.check_in_date), 'dd')} - {format(parseISO(order.check_out_date), 'dd MMM')}</div>}
 
         <div>{isFlight ? order.passengers?.join(', ') : order.guests.join(', ')}</div>
