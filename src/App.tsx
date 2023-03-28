@@ -1,22 +1,19 @@
 import React from 'react';
-import {Route, Routes, useMatch} from 'react-router-dom';
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 
 import {MainRoutes, paths} from './routes/routes';
-import {Header} from './components/common/header/Header';
+import {Layout} from './components/common/layout/Layout';
 
-const App = () => {
-  const mainPath = useMatch(paths.main);
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path={paths.main} element={<Layout/>}>
+    {MainRoutes.map(route => <Route path={route.path} element={route.content()} key={route.path} loader={route.loader}/>)}
+  </Route>
+));
 
+export const App = () => {
   return (
     <>
-      <Header/>
-      <main className={`${mainPath ? 'main' : ''} pt-3`}>
-        <Routes>
-          {MainRoutes.map(route => <Route path={route.path} element={route.content()} key={route.path}/>)}
-        </Routes>
-      </main>
+        <RouterProvider router={router}/>
     </>
   );
 };
-
-export default App;

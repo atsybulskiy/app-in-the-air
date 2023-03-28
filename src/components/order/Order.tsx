@@ -32,7 +32,7 @@ export const Order = ({order}: IProps) => {
     </div>
     <div>
       <div className={styles.price}>${order.total_price}</div>
-      <Link className={styles.link} to={isFlight ? paths.flight(order.id) : paths.reservation(order.id)}>Order
+      <Link className={styles.link} to={isFlight ? paths.trip(order.id) : paths.reservation(order.id)}>Order
         Details</Link>
     </div>
   </div>;

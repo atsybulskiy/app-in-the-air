@@ -1,25 +1,29 @@
-import {Orders} from '../pages/orders/Orders';
+import {LoaderFunction} from '@remix-run/router/utils';
+
 import {Trip} from '../pages/trip/Trip';
+import {Orders, ordersLoader} from '../pages/orders/Orders';
 import {Reservation} from '../pages/reservation/Reservation';
 
 interface IRoutes {
   path: string;
   content: () => JSX.Element;
+  loader?: LoaderFunction;
 }
 
 export const paths = {
   main: '/',
-  orders: '/orders',
-  flight: (id = ':id') => `/flight/${id}`,
-  reservation: (id = ':id') => `/reservation/${id}`
+  orders: 'orders',
+  trip: (id = ':id') => `trip/${id}`,
+  reservation: (id = ':id') => `reservation/${id}`
 };
 
 export const MainRoutes: IRoutes[] = [
   {
     path: paths.main,
-    content: () => <Orders/>
+    content: () => <Orders/>,
+    loader: ordersLoader
   }, {
-    path: paths.flight(),
+    path: paths.trip(),
     content: () => <Trip/>
   }, {
     path: paths.reservation(),

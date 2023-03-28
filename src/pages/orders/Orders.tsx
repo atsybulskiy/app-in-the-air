@@ -1,16 +1,20 @@
 import {MouseEvent, useMemo, useState} from 'react';
+import {LoaderFunction} from '@remix-run/router/utils';
 
 import classNames from 'classnames';
 import styles from './orders.module.scss';
 
 import {compareOrderDates} from '../../helpers';
-import {useOrders} from '../../hooks/useOrders';
-import {OrderTypes} from '../../models/IOrder';
+// import {useOrders} from '../../hooks/useOrders';
+import {CommonOrder, OrderTypes} from '../../models/IOrder';
 import {Search} from '../../components/common/search/Search';
 import {Order} from '../../components/order/Order';
+import OrderService from '../../services/OrderService';
+import {useLoaderData} from 'react-router-dom';
 
-export const Orders = () => {
-  const {orders, isLoading} = useOrders();
+const Orders = () => {
+  const orders = useLoaderData() as CommonOrder[];
+  // const {orders, isLoading} = useOrders();
   const [filter, setFilter] = useState('upcoming');
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -46,10 +50,20 @@ export const Orders = () => {
            onClick={onChangeFilter}>Past
       </div>
     </div>
-    {isLoading
-      ? <div>Loading...</div>
-      : <div className={styles.orders}>
-        {ordersSearched.map(order => <Order key={order.id} order={order}/>)}
-      </div>}
+    {/*{isLoading*/}
+    {/*  ? <div>Loading...</div>*/}
+    {/*  : <div className={styles.orders}>*/}
+    {/*    {ordersSearched.map(order => <Order key={order.id} order={order}/>)}*/}
+    {/*  </div>}*/}
+    <div className={styles.orders}>
+      {ordersSearched.map(order => <Order key={order.id} order={order}/>)}
+    </div>
   </div>;
 };
+
+const ordersLoader: LoaderFunction = async () => {
+  const response = await OrderService.fetchOrders();
+  return response.data;
+};
+
+export {Orders, ordersLoader};
