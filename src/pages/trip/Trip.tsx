@@ -1,20 +1,20 @@
-import {Suspense} from 'react';
-import {Await, defer, LoaderFunction, useLoaderData} from 'react-router-dom';
+import { Suspense } from 'react';
+import { Await, defer, LoaderFunction, useLoaderData } from 'react-router-dom';
 
 import styles from './trip.module.scss';
 
 import OrderService from '../../services/OrderService';
-import {PageHeader} from '../../components/common/page-header/PageHeader';
-import {People} from '../../components/common/people/People';
-import {Flight} from '../../components/flight/Flight';
-import {CommonOrder, OrderTypes} from '../../models/IOrder';
+import { PageHeader } from '../../components/common/page-header/PageHeader';
+import { People } from '../../components/common/people/People';
+import { Flight } from '../../components/flight/Flight';
+import { CommonOrder, OrderTypes } from '../../models/IOrder';
 
 const Trip = () => {
-  const {trip} = useLoaderData() as { trip: CommonOrder<OrderTypes.Flight> };
+  const { trip } = useLoaderData() as { trip: CommonOrder<OrderTypes.Flight> };
 
   return (
     <div className="container">
-      <PageHeader message={'Success, have a nice flight!'} email={'testamike@gmail.com'}/>
+      <PageHeader message={'Success, have a nice flight!'} email={'testamike@gmail.com'} />
       <Suspense fallback={<div className="text-center">Loading...</div>}>
         <Await resolve={trip}>
           {(resolvedTrip) => (
@@ -30,10 +30,10 @@ const Trip = () => {
                 </div>
               </div>
               <div className="label mb-0">Booked flights</div>
-              <Flight flight={resolvedTrip.outbound} className="mb-3"/>
-              <Flight flight={resolvedTrip.return} className="mb-4"/>
+              <Flight flight={resolvedTrip.outbound} className="mb-3" />
+              <Flight flight={resolvedTrip.return} className="mb-4" />
               <div className="label">Passengers</div>
-              <People peoples={resolvedTrip.passengers}/>
+              <People peoples={resolvedTrip.passengers} />
             </>
           )}
         </Await>
@@ -50,11 +50,11 @@ const getOrder = async (id?: string) => {
   return null;
 };
 
-const tripLoader: LoaderFunction = async ({params}) => {
-  const {id} = params;
+const tripLoader: LoaderFunction = async ({ params }) => {
+  const { id } = params;
   return defer({
     trip: getOrder(id)
   });
 };
 
-export {Trip, tripLoader};
+export { Trip, tripLoader };

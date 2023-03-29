@@ -1,14 +1,14 @@
-import {MouseEvent, useMemo, useState} from 'react';
-import {useLoaderData, LoaderFunction} from 'react-router-dom';
+import { MouseEvent, useMemo, useState } from 'react';
+import { LoaderFunction, useLoaderData } from 'react-router-dom';
 
 import classNames from 'classnames';
 import styles from './orders.module.scss';
 
-import {compareOrderDates} from '../../helpers';
+import { compareOrderDates } from '../../helpers';
 // import {useOrders} from '../../hooks/useOrders';
-import {CommonOrder, OrderTypes} from '../../models/IOrder';
-import {Search} from '../../components/common/search/Search';
-import {Order} from '../../components/order/Order';
+import { CommonOrder, OrderTypes } from '../../models/IOrder';
+import { Search } from '../../components/common/search/Search';
+import { Order } from '../../components/order/Order';
 import OrderService from '../../services/OrderService';
 
 const Orders = () => {
@@ -18,14 +18,14 @@ const Orders = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const filteredOrders = useMemo(() => {
-    return orders.filter(order => {
+    return orders.filter((order) => {
       const isUpcoming = compareOrderDates(order);
       return filter === 'upcoming' ? isUpcoming : !isUpcoming;
     });
   }, [filter, orders]);
 
   const ordersSearched = useMemo(() => {
-    return filteredOrders.filter(order => {
+    return filteredOrders.filter((order) => {
       const people = order.type === OrderTypes.Flight ? order.passengers : order.guests;
       return people.join().toLowerCase().includes(searchValue.toLowerCase());
     });
@@ -36,23 +36,31 @@ const Orders = () => {
     setFilter(id);
   };
 
-  return <div className="container">
-    <div className="d-flex align-items-center mb-3">
-      <div className={styles.title}>Orders</div>
-      <Search value={searchValue} onChange={setSearchValue}/>
-    </div>
-    <div className={styles.filters}>
-      <div className={classNames({[styles.active]: filter === 'upcoming'})} id={'upcoming'}
-           onClick={onChangeFilter}>Upcoming
+  return (
+    <div className="container">
+      <div className="d-flex align-items-center mb-3">
+        <div className={styles.title}>Orders</div>
+        <Search value={searchValue} onChange={setSearchValue} />
       </div>
-      <div className={classNames({[styles.active]: filter === 'past'})} id={'past'}
-           onClick={onChangeFilter}>Past
+      <div className={styles.filters}>
+        <div
+          className={classNames({ [styles.active]: filter === 'upcoming' })}
+          id={'upcoming'}
+          onClick={onChangeFilter}
+        >
+          Upcoming
+        </div>
+        <div className={classNames({ [styles.active]: filter === 'past' })} id={'past'} onClick={onChangeFilter}>
+          Past
+        </div>
+      </div>
+      <div className={styles.orders}>
+        {ordersSearched.map((order) => (
+          <Order key={order.id} order={order} />
+        ))}
       </div>
     </div>
-    <div className={styles.orders}>
-      {ordersSearched.map(order => <Order key={order.id} order={order}/>)}
-    </div>
-  </div>;
+  );
 };
 
 const ordersLoader: LoaderFunction = async () => {
@@ -60,4 +68,4 @@ const ordersLoader: LoaderFunction = async () => {
   return response.data;
 };
 
-export {Orders, ordersLoader};
+export { Orders, ordersLoader };
