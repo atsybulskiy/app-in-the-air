@@ -1,16 +1,15 @@
 import { Suspense } from 'react';
-import { Await, defer, LoaderFunction, useLoaderData } from 'react-router-dom';
+import { Await, useLoaderData } from 'react-router-dom';
 
 import styles from './trip.module.scss';
 
-import OrderService from '../../services/OrderService';
 import { PageHeader } from '../../components/common/page-header/PageHeader';
 import { People } from '../../components/common/people/People';
 import { Flight } from '../../components/flight/Flight';
 import { CommonOrder, OrderTypes } from '../../models/IOrder';
 
-const Trip = () => {
-  const { trip } = useLoaderData() as { trip: CommonOrder<OrderTypes.Flight> };
+export const Trip = () => {
+  const { order: trip } = useLoaderData() as { order: CommonOrder<OrderTypes.Flight> };
 
   return (
     <div className="container">
@@ -41,20 +40,3 @@ const Trip = () => {
     </div>
   );
 };
-
-const getOrder = async (id?: string) => {
-  if (id) {
-    const response = await OrderService.fetchOrder(id);
-    return response.data;
-  }
-  return null;
-};
-
-const tripLoader: LoaderFunction = async ({ params }) => {
-  const { id } = params;
-  return defer({
-    trip: getOrder(id)
-  });
-};
-
-export { Trip, tripLoader };

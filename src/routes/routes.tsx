@@ -1,8 +1,9 @@
 import { LoaderFunction } from '@remix-run/router/utils';
 
-import { Trip, tripLoader } from '../pages/trip/Trip';
+import { Trip } from '../pages/trip/Trip';
 import { Orders, ordersLoader } from '../pages/orders/Orders';
 import { Reservation } from '../pages/reservation/Reservation';
+import { orderLoader } from '../pages/common/orderLoader';
 
 interface IRoutes {
   path: string;
@@ -26,10 +27,11 @@ export const MainRoutes: IRoutes[] = [
   {
     path: paths.trip(),
     content: () => <Trip />,
-    loader: tripLoader
+    loader: orderLoader
   },
   {
     path: paths.reservation(),
-    content: () => <Reservation />
+    content: () => <Reservation />,
+    loader: orderLoader
   }
 ];
