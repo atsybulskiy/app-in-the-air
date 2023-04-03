@@ -1,18 +1,9 @@
 import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { MainRoutes, paths } from './routes/routes';
-import { Layout } from './components/common/layout/Layout';
+import { routes } from './routes/routes';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path={paths.main} element={<Layout />}>
-      {MainRoutes.map((route) => (
-        <Route path={route.path} element={route.content()} key={route.path} loader={route.loader} />
-      ))}
-    </Route>
-  )
-);
+const router = createBrowserRouter(routes);
 
 export const App = () => {
   return (
