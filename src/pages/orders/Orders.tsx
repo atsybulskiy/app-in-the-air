@@ -1,19 +1,17 @@
 import { MouseEvent, useMemo, useState } from 'react';
-import { LoaderFunction, useLoaderData } from 'react-router-dom';
 
 import classNames from 'classnames';
 import styles from './orders.module.scss';
 
 import { compareOrderDates } from '../../helpers';
-// import {useOrders} from '../../hooks/useOrders';
-import { CommonOrder, OrderTypes } from '../../models/IOrder';
+import { OrderTypes } from '../../models/IOrder';
 import { Search } from '../../components/common/search/Search';
 import { Order } from '../../components/order/Order';
-import OrderService from '../../services/OrderService';
+import { useGetOrdersQuery } from '../../redux';
+import { Loader } from '../../components/common/loader/Loader';
 
-const Orders = () => {
-  const orders = useLoaderData() as CommonOrder[];
-  // const {orders, isLoading} = useOrders();
+export const Orders = () => {
+  const { data: orders = [], isLoading } = useGetOrdersQuery();
   const [filter, setFilter] = useState('upcoming');
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -37,8 +35,8 @@ const Orders = () => {
   };
 
   return (
-    <div className="container">
-      <div className="d-flex align-items-center mb-3">
+    <div className='container'>
+      <div className='d-flex align-items-center mb-3'>
         <div className={styles.title}>Orders</div>
         <Search value={searchValue} onChange={setSearchValue} />
       </div>
@@ -54,18 +52,13 @@ const Orders = () => {
           Past
         </div>
       </div>
-      <div className={styles.orders}>
-        {ordersSearched.map((order) => (
-          <Order key={order.id} order={order} />
-        ))}
-      </div>
+      {isLoading ? <Loader /> : (
+        <div className={styles.orders}>
+          {ordersSearched.map((order) => (
+            <Order key={order.id} order={order} />
+          ))}
+        </div>)}
     </div>
   );
 };
 
-const ordersLoader: LoaderFunction = async () => {
-  const response = await OrderService.fetchOrders();
-  return response.data;
-};
-
-export { Orders, ordersLoader };

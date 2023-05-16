@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 
 import { Layout } from '../components/common/layout/Layout';
-import { Orders, ordersLoader } from '../pages/orders/Orders';
+import { Orders } from '../pages/orders/Orders';
 import { Reservation } from '../pages/reservation/Reservation';
 import { orderLoader } from '../pages/common/orderLoader';
 import { Trip } from '../pages/trip/Trip';
@@ -20,11 +20,10 @@ export const routes: RouteObject[] = [
     element: <Layout />,
     errorElement: <RootBoundary />,
     children: [
-      { index: true, element: <Orders />, loader: ordersLoader },
+      { index: true, element: <Orders /> },
       {
         path: paths.trip(),
-        element: <Trip />,
-        loader: orderLoader
+        element: <Trip />
       },
       {
         path: paths.reservation(),
