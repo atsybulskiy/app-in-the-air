@@ -3,7 +3,6 @@ import { RouteObject } from 'react-router-dom';
 import { Layout } from '../components/common/layout/Layout';
 import { Orders } from '../pages/orders/Orders';
 import { Reservation } from '../pages/reservation/Reservation';
-import { orderLoader } from '../pages/common/orderLoader';
 import { Trip } from '../pages/trip/Trip';
 import { RootBoundary } from '../components/common/root-boundary/RootBoundary';
 
@@ -27,8 +26,7 @@ export const routes: RouteObject[] = [
       },
       {
         path: paths.reservation(),
-        element: <Reservation />,
-        loader: orderLoader
+        element: <Reservation />
       }
     ]
   }
