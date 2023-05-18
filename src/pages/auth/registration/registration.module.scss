@@ -1,0 +1,9 @@
+@import 'src/styles/variables';
+
+.container {
+  composes: container from '../login/login.module.scss';
+}
+
+.form {
+  composes: form from '../login/login.module.scss';
+}

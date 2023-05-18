@@ -2,6 +2,8 @@ import { Outlet, useMatch } from 'react-router-dom';
 import { Header } from '../header/Header';
 
 import classNames from 'classnames';
+import styles from './layout.module.scss';
+
 import { paths } from '../../../routes/routes';
 
 export const Layout = () => {
@@ -10,7 +12,7 @@ export const Layout = () => {
   return (
     <>
       <Header />
-      <main className={classNames('pt-3', { main: mainPath })}>
+      <main className={classNames(styles.container, { main: mainPath })}>
         <Outlet />
       </main>
     </>
