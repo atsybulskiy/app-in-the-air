@@ -3,12 +3,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { API_AUTH_URL } from '../api';
 import { AuthResponse, LoginInput, RegisterInput } from '../api/types';
-import { logout, setAuth, setUser } from './features/userSlice';
+import { logout, setAuth, setToken, setUser } from './features/authSlice';
+import { RootState } from './store';
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: API_AUTH_URL,
-  prepareHeaders: (headers) => {
-    const token = localStorage.getItem('token');
+  prepareHeaders: (headers, { getState }) => {
+    const { authState: { token } } = getState() as RootState;
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
     }
@@ -21,12 +22,11 @@ export const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, Fetch
   if (result.error && result.error.status === 401) {
     const refreshResult = await baseQuery({ url: 'refresh', credentials: 'include' }, api, extraOptions);
     console.log('%c⇒ refreshResult 401', 'color: #89DDF7', refreshResult.data);
-    if (refreshResult.data) {
-      // @ts-ignore
-      localStorage.setItem('token', refreshResult.data.accessToken);
+    const data = refreshResult.data as AuthResponse;
+    if (data) {
       api.dispatch(setAuth(true));
-      // @ts-ignore
-      api.dispatch(setUser(refreshResult.data.user));
+      api.dispatch(setToken(data.accessToken));
+      api.dispatch(setUser(data.user));
       result = await baseQuery(args, api, extraOptions);
     } else {
       api.dispatch(logout());
@@ -50,7 +50,7 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          localStorage.setItem('token', data.accessToken);
+          dispatch(setToken(data.accessToken));
           dispatch(setAuth(true));
           dispatch(setUser(data.user));
         } catch (error) {
@@ -69,7 +69,7 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          localStorage.setItem('token', data.accessToken);
+          dispatch(setToken(data.accessToken));
           dispatch(setAuth(true));
           dispatch(setUser(data.user));
         } catch (error) {
@@ -87,7 +87,6 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          localStorage.removeItem('token');
           dispatch(logout);
         } catch (error) {
         }
@@ -103,7 +102,7 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          localStorage.setItem('token', data.accessToken);
+          dispatch(setToken(data.accessToken));
           dispatch(setAuth(true));
           dispatch(setUser(data.user));
         } catch (e) {
@@ -113,4 +112,4 @@ export const authApi = createApi({
   })
 });
 
-export const { useLoginMutation, useRegistrationMutation, useLogoutMutation, useCheckAuthQuery } = authApi;
+export const { useLoginMutation, useRegistrationMutation, useLogoutMutation } = authApi;

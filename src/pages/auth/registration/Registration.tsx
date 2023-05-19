@@ -3,13 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './registration.module.scss';
 
-import { RootState, useAppSelector, useRegistrationMutation } from '../../../redux';
+import { useAppSelector, useRegistrationMutation } from '../../../redux';
 import { Loader } from '../../../components/common/loader/Loader';
 import { paths } from '../../../routes/routes';
 
 export const Registration = () => {
   const navigate = useNavigate();
-  const { isAuth } = useAppSelector((state: RootState) => state.userState);
+  const { isAuth } = useAppSelector((state) => state.authState);
   const [email, setEmail] = useState('saniabest+1500@gmail.com');
   const [password, setPassword] = useState('');
 

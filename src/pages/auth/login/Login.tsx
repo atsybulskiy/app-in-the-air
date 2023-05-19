@@ -9,7 +9,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('saniabest+1500@gmail.com');
   const [password, setPassword] = useState('');
-  const { isAuth } = useAppSelector((state) => state.userState);
+  const { isAuth } = useAppSelector((state) => state.authState);
 
   const [loginUser, { isLoading, isSuccess, error, isError }] = useLoginMutation();
 
