@@ -22,7 +22,7 @@ export const Login = () => {
       navigate(paths.main);
     }
     if (isError) {
-      if (Array.isArray((error as any).data.error)) {
+      if (Array.isArray((error as any)?.data.error)) {
         (error as any).data.error.forEach((el: any) =>
           console.log('%c⇒ Error', 'color: #FF5370', el.message)
         );
@@ -30,8 +30,7 @@ export const Login = () => {
         console.log('%c⇒ Error', 'color: #FF5370', (error as any).data.message);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, isAuth]);
+  }, [isLoading, isAuth, isSuccess, isError, navigate, error]);
 
   if (isLoading) {
     return <Loader />;

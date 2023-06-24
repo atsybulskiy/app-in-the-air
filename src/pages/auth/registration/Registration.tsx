@@ -32,8 +32,7 @@ export const Registration = () => {
         console.log('%c⇒ Error', 'color: #FF5370', (error as any).data.message);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, isAuth]);
+  }, [isLoading, isAuth, isSuccess, isError, navigate, error]);
 
   if (isLoading) {
     return <Loader />;
