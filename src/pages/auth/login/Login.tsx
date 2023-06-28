@@ -11,14 +11,14 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const { isAuth } = useAppSelector((state) => state.authState);
 
-  const [loginUser, { isLoading, isSuccess, error, isError }] = useLoginMutation();
+  const [loginUser, { isLoading, error, isError }] = useLoginMutation();
 
   const onSubmitHandler = async () => {
     loginUser({ email, password });
   };
 
   useEffect(() => {
-    if (isSuccess && isAuth) {
+    if (isAuth) {
       navigate(paths.main);
     }
     if (isError) {
@@ -30,7 +30,7 @@ export const Login = () => {
         console.log('%c⇒ Error', 'color: #FF5370', (error as any).data.message);
       }
     }
-  }, [isLoading, isAuth, isSuccess, isError, navigate, error]);
+  }, [isAuth, isError, navigate, error]);
 
   if (isLoading) {
     return <Loader />;
