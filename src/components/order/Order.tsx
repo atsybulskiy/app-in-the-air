@@ -4,8 +4,8 @@ import { format, parseISO } from 'date-fns';
 import styles from './order.module.scss';
 import hotel from '../../assets/images/hotel.svg';
 
-import { paths } from '../../routes/routes';
 import { CommonOrder, OrderTypes } from '../../models/IOrder';
+import { paths } from '../../shared/config/routes/routes';
 
 interface IProps {
   order: CommonOrder;

@@ -2,7 +2,7 @@ import styles from './culture-selector.module.scss';
 import { useLogoutMutation } from '../../../redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { paths } from '../../../routes/routes';
+import { paths } from '../../../shared/config/routes/routes';
 
 export const CultureSelector = () => {
   const navigate = useNavigate();

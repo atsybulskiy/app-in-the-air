@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import styles from './header.module.scss';
 import logo from '../../../assets/images/logo.svg';
 
-import { paths } from '../../../routes/routes';
 import { CultureSelector } from '../culture-selector/CultureSelector';
 import { User } from '../user/User';
+import { paths } from '../../../shared/config/routes/routes';
 
 export const Header = () => {
   return (

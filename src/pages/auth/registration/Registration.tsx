@@ -5,7 +5,7 @@ import styles from './registration.module.scss';
 
 import { useAppSelector, useRegistrationMutation } from '../../../redux';
 import { Loader } from '../../../components/common/loader/Loader';
-import { paths } from '../../../routes/routes';
+import { paths } from '../../../shared/config/routes/routes';
 
 export const Registration = () => {
   const navigate = useNavigate();

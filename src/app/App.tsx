@@ -1,9 +1,8 @@
-import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { routes } from './routes/routes';
-import { authApi, useAppSelector } from './redux';
-import { Loader } from './components/common/loader/Loader';
+import { authApi, useAppSelector } from '../redux';
+import { Loader } from '../components/common/loader/Loader';
+import { routes } from '../shared/config/routes/routes';
 
 const router = createBrowserRouter(routes);
 

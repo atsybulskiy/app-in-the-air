@@ -3,7 +3,7 @@ import { useAppSelector, useLoginMutation } from '../../../redux';
 import { useEffect, useState } from 'react';
 import { Loader } from '../../../components/common/loader/Loader';
 import { Link, useNavigate } from 'react-router-dom';
-import { paths } from '../../../routes/routes';
+import { paths } from '../../../shared/config/routes/routes';
 
 export const Login = () => {
   const navigate = useNavigate();
